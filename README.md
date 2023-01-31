@@ -14,8 +14,8 @@
 
 # 確率過程
 
-### 指数分布（exponential distribution）
-##### 確率分布関数（累積分布関数）
+## 指数分布（exponential distribution）
+### 確率分布関数（累積分布関数）
 ```math
 A(t) = P[\tilde{t} \le t] = \left\{
     \begin{array}{ll}
@@ -24,7 +24,7 @@ A(t) = P[\tilde{t} \le t] = \left\{
     \end{array}
 \right.
 ```
-##### 確率密度関数
+### 確率密度関数
 ```math
 a(t) = \left\{
     \begin{array}{ll}
@@ -34,7 +34,7 @@ a(t) = \left\{
 \right.
 ```
 
-##### 指数分布に従う確率変数の取得
+### 指数分布に従う確率変数の取得
 指数分布に従う確率変数 $x \sim Exp(\lambda)$ を生成するためには，$A(t) \sim U(0,1)$ と仮定して，逆関数法で求めることができる．ただし，$U(0,1)$ は $0 \sim 1$ の一様乱数である．
 ```math
 x = t = -\frac{\log \left( 1 - A(t) \right)}{\lambda} \,\,\,\,\, \left( = -\frac{1}{\lambda} \ln U \right)
