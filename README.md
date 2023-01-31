@@ -57,17 +57,17 @@ x = t = -\frac{\log \left( 1 - A(t) \right)}{\lambda} \,\,\,\,\, \left( = -\frac
 (2) サービス時間分布
 
 > $M$ $\cdots$ 指数分布
-
+>
 > $D$ $\cdots$ 一定分布
-
+>
 > $E_k$ $\cdots$ $k$ステージにのアーラン分布
-
+>
 > $G$ $\cdots$ 一般分布
-
+>
 > $GI$ $\cdots$ 再生過程（間隔が独立な一般分布に従う過程）
-
+>
 > $IPP$ $\cdots$ 継続ポアソン過程 (Interrupted Poisson Process)
-
+>
 > $MMPP$ $\cdots$ マルコフ変調ポアソン過程
 
 (3) サービス窓口の個数
