@@ -3,7 +3,7 @@
 #include <math.h>
 #include <queue>
 
-#define DEBUG 0
+#define DEBUG 1
 
 using namespace std;
 
@@ -19,7 +19,7 @@ double uni_rand(){
     random_device rand_dev;
     mt19937 mt32(rand_dev());
     uniform_real_distribution<double> uni_distribution(0, 1);
-    return uni_distribution(mt32);    
+    return uni_distribution(mt32);
 }
 
 // Exponential Random Number (指数乱数)
@@ -48,8 +48,8 @@ bool operator<(const Event &left, const Event &right){
 priority_queue<Event> event_table;
 
 void register_event(double s_time, EVENT_TYPE e_type, int pkt_id){
-    Event e = {s_time, e_type, pkt_id};
-    event_table.push(e);
+    Event new_event = {s_time, e_type, pkt_id};
+    event_table.push(new_event);
 }
 
 void delete_head_event(){
