@@ -19,6 +19,12 @@ int main(){
     int e2 =  static_cast<int>(EVENT_TYPE::TERMINATOR);
     cout << e2 << endl;
 
+    if (event_type == EVENT_TYPE::TERMINATOR){
+        cout << "\nmatch!" <<endl;
+        // cout << event_type <<endl;  // Error!
+        cout << static_cast<int>(event_type) <<endl;  // OK!
+    }
+
     return 0;
 }
 
