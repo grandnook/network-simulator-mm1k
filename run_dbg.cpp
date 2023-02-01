@@ -3,6 +3,8 @@
 #include <math.h>
 #include <queue>
 
+#define DEBUG 0
+
 using namespace std;
 
 #define START_TIME 0
@@ -72,6 +74,9 @@ void delete_head_event(){
 
 int main(){
     double sim_time = START_TIME;
+#if DEBUG
+    cout << "[sim_time] = " << sim_time << endl;
+#endif
 
     register_event(START_TIME, EVENT_TYPE::ARRIVAL, global_pkt_id++);
     register_event(FINISH_TIME, EVENT_TYPE::TERMINATOR, -1);
@@ -80,10 +85,23 @@ int main(){
     {
         EVENT_TYPE head_e_type = event_table.top().event_type;
         if (head_e_type == EVENT_TYPE::TERMINATOR){
+#if DEBUG
+        cout << "  event_type = Terminator" << endl;
+        while(!event_table.empty()){
+            cout << "    arrival_time = " << event_table.top().arrival_time << endl;
+            cout << "    event_type = " << static_cast<int>(event_table.top().event_type) << endl;
+            cout << "    packet_id = " << event_table.top().packet_id << endl;
+            cout << "    pkt_queue = " << pkt_queue.size() << endl << endl;
+            delete_head_event();
+        }
+#endif
             break;
 
         }
         else if (head_e_type == EVENT_TYPE::ARRIVAL){
+#if DEBUG
+            cout << "  event_type = Arrival" << endl;
+#endif
             register_event(sim_time + exp_rand(lambd), EVENT_TYPE::ARRIVAL, global_pkt_id);
 
             if (pkt_queue.size() < K){
@@ -100,6 +118,9 @@ int main(){
 
         }
         else if (head_e_type == EVENT_TYPE::DEPARTURE){
+#if DEBUG
+            cout << "  event_type = Departure" << endl;
+#endif
             if (pkt_queue.size() > 1){
                 register_event(sim_time + exp_rand(mu), EVENT_TYPE::DEPARTURE, pkt_queue.front().w_packet_id);
             }
@@ -110,11 +131,19 @@ int main(){
             departure_cnt++;
 
         }
+#if DEBUG
+        cout << "    arrival_time = " << event_table.top().arrival_time << endl;
+        cout << "    packet_id = " << event_table.top().packet_id << endl;
+        cout << "    pkt_queue = " << pkt_queue.size() << endl;
+#endif
 
         delete_head_event();
         interval_x_queue_sum += (event_table.top().arrival_time - sim_time) * pkt_queue.size();
 
         sim_time = event_table.top().arrival_time;
+#if DEBUG
+        cout << "\n[sim_time] = " << sim_time << endl;
+#endif
     }
 
     cout << "Average Packet Count = " << interval_x_queue_sum/(FINISH_TIME-START_TIME) << endl;
